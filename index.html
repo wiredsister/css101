@@ -1,0 +1,288 @@
+<!Doctype HTML> 
+<html>
+	<head>
+		<title>CSS 101</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="styles/reveal.min.css">
+		<link rel="stylesheet" type="text/css" href="styles/custom.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img src="images/trail_of_tears.png">
+					<h1 class="title">CSS 101</h1>
+				</section><!--first slide-->
+				<section>
+					<h1>What is CSS?</h1>
+					<h3>
+						Cascading Style Sheets (CSS) is a language used for describing the look and formatting of a document
+						written in a markup language (...so that means any XML document, like plain XML, HTML, SVG).
+					</h3>
+				</section><!--second slide-->
+				<section>
+					<h1>But what is the <em>Cascade</em> in CSS?</h1>
+				</section><!--third slide-->
+				<section><!--cascade nested slides-->
+					<section>
+						<h1>The Cascade is an algorithm defining how to combine properites values originating from different sources.</h1>
+					</section><!--nested slide one-->
+					<section>
+						<h1>Before we begin, what CSS entities participate in the cascade?</h1>
+					</section><!--nested slide two-->
+					<section>
+						<h2>Only CSS declarations apply to the cascade</h2>
+						<ul>
+							<li class="fragment">property key/value pairs</li>
+							<li class="fragment">a.k.a. <span class="code">@font-face</span> containing <em>descriptors</em> don't participate</li>
+							<li class="fragment">note that <span class="code">@charset</span> and <span class="code">@import</span> obey other algorithmic rules</li>
+							<li class="fragment">note that CSS animations, specifically <span class="code">@keyframes</span> define animations between states. So keyframes don't cascade. It takes values from one single keyframe at a time and never mixes several of them.</li>
+						</ul>
+					</section><!--nested slide three-->
+					<section>
+						<h2>If something applies, the algorithm then determines its importance (whether they have <span class="code">!important</span> and their origin). If you looked at a table which compared origin and importance, you would notice that precedence is ascending-- meaning, that user stylesheets take precedence over user agent stylesheets.</h2>
+					</section><!--nested slide four-->
+					<section>
+						<img class="raptor" src="images/philosoraptor.jpg">
+						<h1>But what if they are equal?</h1>
+					</section><!--nested slide five-->
+					<section>
+						<h2>In case of equality, the specificity of a value is considered to choose one or the other.</h2>
+					</section><!--nested slide six-->
+					<section>
+						<h2>CSS Specificity is the means by which the browser decides which property values are them most relevant to an element and gets to be applied.</h2>
+						<h4 class="fragment">Specificity order ranks increasing as:</h4>
+						<ul>
+							<li class="fragment">Universal Selectors</li>
+							<li class="fragment">Type Selectors</li>
+							<li class="fragment">Class Selectors</li>
+							<li class="fragment">Attributes selectors</li>
+							<li class="fragment">Pseudo-classes</li>
+							<li class="fragment">ID Selectors</li>
+							<li class="fragment">Inline Style</li>
+						</ul>
+						<p class="fragment">* Note that proximity of elements in the document tree is irrelevant to specificity</p>
+					</section><!--nested slide seven-->
+					<section>
+						<h1>Wait, but what about <span class="code">!important</span> ?</h1>
+						<p>
+							The !important rule is used to override any other declaration in CSS, wherever it is in the declaration list.
+						</p>
+
+						<p>
+								Things you shouldn't do:
+						</p>
+						<ul>
+							<li class="fragment">Do not do this on site wide CSS.</li>
+							<li class="fragment">Page specific to override vendor is okay... but still makes Gina sad.</li>
+							<li class="fragment">Always look for specificity and the natural cascade.</li>
+							<li class="fragment">Joe may disagree, but I think !important is okay for utility classes</li>
+						</ul>
+					</section><!--nested slide eight-->
+				</section>
+				<section>
+					<img id="rage" src="images/Rage-Face.jpg">
+					<h1>Okay Gina, but now when I use the CSS, it's jank.</h1>
+					<h3>Yep.</h3>
+				</section><!--fourth slide-->
+				<section>
+					<h1>Let's talk about <span class="code">display</span></h1>
+
+					<p class="fragment">* Disclaimer: I will not be talking about the majority of <span class="code">display</span> properties. MDN lists over 20. Unless you are interested in experimental CSS3, making your own grid layout, or doing HTML emails, you can read on safely.
+					</p>
+				</section><!--fifth slide-->
+				<section><!--display nested slides-->
+					<section>
+						<h2>Imagine you are a box. You live in a box world with box rules. <span class="code">display</span> is the way that you, a box, behave.</h2>
+					</section><!--nested slide one-->
+					<section>
+						<img id="ninja" src="images/ninja.jpg">
+						<h2><span class="code">display : none</span></h2>
+						<p class="fragment">Like a ninja, it isn't there. Nor does it affect the layout. All decendents are now hidden and removed from layout. <br> <br> It's like you never were there.</p>
+						<p class="fragment"> * Note that it <span class="code">visibility : hidden</span> is different in that it will hide the element but the layout will respond like it's still there.</p>
+					</section><!--nested slide two-->
+					<section>
+						<img id="block" src="images/block.jpeg">
+						<h2><span class="code">display : block</span></h2>
+						<p class="fragment">A <span class="code">block</span>-level element is one that takes up a whole new line and stretches out from left to right as far as it can. Most things in your browser's style sheet are by default <span class="code">block</span>-level elements. <span class="code">&lt;div&gt;</span> is possibly the most common you'd encounter. There are also <span class="code">&lt;form&gt;</span>, <span class="code">&lt;p&gt;</span> and HTML5 <span class="code">&lt;header&gt;</span>, <span class="code">&lt;footer&gt;</span>, and <span class="code">&lt;section&gt;</span>.</p>
+					</section><!--nested slide three-->
+					<section>
+						<img id="skates" src="images/skates.jpg">
+						<h2><span class="code">display : inline</span></h2>
+						<p class="fragment"><span class="code">inline</span> elements go with the flow of the line. For example, elements such as <span class="code">&lt;a&gt;</span> and <span class="code">&lt;span&gt;</span> wrap the text that they surround.</p>
+					</section><!--nested slide four-->
+					<section>
+						<img id="two-face" src="images/two-face.jpg">
+						<h2><span class="code">display : inline-block</span></h2>
+						<p class="fragment">Sometimes you can have your cake and eat it too. The element generates a <span class="code">block</span> element box that will be flowed with surrounding content as if it were a single <span class="code">inline</span> box.</p>
+					</section><!--nested slide five-->
+				</section>
+				<section><!--position nested slides-->
+					<h1>Let's talk about <span class="code">position</span></h1>
+					<h3>Once we've established whether a box is inline or block, we then establish the formatting of its context.</h3>
+				</section><!--sixth slide-->
+				<section>
+					<section>
+						<h2><span class="code">position : static</span></h2>
+						<p class="fragment">Imagine you had those childhood blocks you played with as a kid. Well, think of the gravity that applied to them as being the "normal flow". If I drop a  <span class="code">static</span> <span class="code">&lt;div&gt;</span> on the page it will snap to the top left (in this strange world of boxes, gravity is upside down). If you added another block to the page, you'd see it stack nicely one on top of the other.</p>
+						<p class="fragment">* Notice that properties like <span class="code">top</span>, <span class="code">left</span>, <span class="code">right</span>, or <span class="code">bottom</span> do not apply.</p>
+					</section><!--nested slide one-->
+					<section>
+						<h2><span class="code">position : relative</span></h2>
+						<p class="fragment"><span class="code">relative</span> also acts like your childhood blocks and stacks as you'd expect. However, <span class="code">relative</span> elements can bend the law of gravity. You can offest them and their children exist within the new coordinate plane as the parent.</p>
+					</section><!--nested slide two-->
+					<section>
+						<h2><span class="code">position : absolute</span></h2>
+						<p class="fragment"><span class="code">absolute</span> elements are completely outside of the flow. They dance to the beat of their own drum, locating to a specified position that is relative to its closest positioned ancestor or containing block. Absolutely positioned boxes can have margins, they do not collapse with any other margins.</p>
+					</section><!--nested slide three-->
+					<section>
+						<h2><span class="code">position : fixed</span></h2>
+						<p class="fragment"><span class="code">fixed</span> isn't much different than <span class="code">absolute</span> except it is relative to the viewport (broswer, device window). It doesn't scroll within the document. It's always there.</p>
+					</section><!--nested slide four-->
+				</section>
+				<section>
+					<h1>But I just can't get this f@#king <span class="code">&lt;div&gt;</span> to float left!</h1>
+				</section><!--seventh slide-->
+				<section><!--float nested slides-->
+					<section>
+						<blockquote>"CSS floats are the most annoying things ever." - Me</blockquote>
+					</section><!--nested slide one-->
+					<section>
+						<h2><span class="code">float</span> is a CSS positioning property.</h2>
+						<ul>
+							<li class="fragment">to understand why it exists, look to print design</li>
+							<li class="fragment">it is different than <span class="code">absolute</span> in that it isn't completely out of the flow, it affects the other elements in its line to flow around it.</li>
+							<li class="fragment">there are four values, <span class="code">left</span>, <span class="code">right</span>, <span class="code">none</span>, and <span class="code">inherit</span>. </li>
+						</ul>
+					</section><!--nested slide two-->
+					<section>
+						<img class="raptor" src="images/philosoraptor.jpg">
+						<h1>You mean I can create entire web layouts using <span class="code">float</span>!??!</h1>
+					</section><!--nested slide three-->
+					<section>
+						<h2>Yes.</h2>
+						<h3>But anybody who has tried to make a layout with floats has needed to learn the sister property to <span class="code">float</span> which is <span class="code">clear</span>.</h3>
+					</section><!--nested slide four-->
+					<section>
+						<h2>If you want to create a new line you need to apply the declaration <span class="code">clear : both</span> to whatever element you want not flow around.</h2>
+						<ul>
+							<li class="fragment"><span class="code">clear</span> has four values as well : <span class="code">both</span>, <span class="code">left</span>, <span class="code">right</span>, and <span class="code">none</span></li>
+							<li class="fragment">If the parent element weirdly collapses, try clearing the float <strong>after</strong> the floated elements but <strong>before</strong> the close of the container</li>
+							<li class="fragment">There are a few other methods for clearing floats, such as setting the <span class="code">overflow</span> property on the parent... but this can be a pain in the ass as you'll find some weird scrollbars potentially happening... and it could hide content.</li>
+							<li class="fragment">Another easy way could be:
+								<pre>
+									<code>
+	.clearfix:after { 
+	   content: "."; 
+	   visibility: hidden; 
+	   display: block; 
+	   height: 0; 
+	   clear: both;
+	}
+									</code>
+								</pre>
+							</li>
+							<li class="fragment"><strong>TL;DR if you think you can do this easily in legacy browsers you are in for a sad, sad wake up call. </strong></li>
+						</ul>
+					</section><!--nested slide five-->
+				</section>
+				<section>
+					<h1>Fin</h1>
+					<h3>There are a lot of resources on the web and they are not created equal.</h3>
+					<ul>
+						<li class="fragment">
+							<a href="http://css-tricks.com/">http://css-tricks.com/</a>
+						</li>
+						<li class="fragment">
+							<a href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a>
+						</li class="fragment">
+						<li class="fragment">
+							* Please do not use W3Schools... please.
+						</li>
+						<li class="fragment">
+							And of course... Stack Overflow.
+						</li>
+					</ul>
+				</section><!--slide nine-->
+			</div><!--slides-->
+		</div><!--reveal-->
+
+		<!--le javascript-->
+		<script type="text/javascript" src="js/reveal.js"></script>
+		<script type="text/javascript">
+			Reveal.initialize({
+	    // Display controls in the bottom right corner
+	    controls: true,
+
+	    // Display a presentation progress bar
+	    progress: true,
+
+	    // Display the page number of the current slide
+	    slideNumber: false,
+
+	    // Push each slide change to the browser history
+	    history: true,
+
+	    // Enable keyboard shortcuts for navigation
+	    keyboard: true,
+
+	    // Enable the slide overview mode
+	    overview: true,
+
+	    // Vertical centering of slides
+	    center: true,
+
+	    // Enables touch navigation on devices with touch input
+	    touch: true,
+
+	    // Loop the presentation
+	    loop: false,
+
+	    // Change the presentation direction to be RTL
+	    rtl: false,
+
+	    // Turns fragments on and off globally
+	    fragments: true,
+
+	    // Flags if the presentation is running in an embedded mode,
+	    // i.e. contained within a limited portion of the screen
+	    embedded: false,
+
+	    // Number of milliseconds between automatically proceeding to the
+	    // next slide, disabled when set to 0, this value can be overwritten
+	    // by using a data-autoslide attribute on your slides
+	    autoSlide: 0,
+
+	    // Stop auto-sliding after user input
+	    autoSlideStoppable: true,
+
+	    // Enable slide navigation via mouse wheel
+	    mouseWheel: false,
+
+	    // Hides the address bar on mobile devices
+	    hideAddressBar: true,
+
+	    // Opens links in an iframe preview overlay
+	    previewLinks: false,
+
+	    // Transition style
+	    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+	    // Transition speed
+	    transitionSpeed: 'default', // default/fast/slow
+
+	    // Transition style for full page slide backgrounds
+	    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+	    // Number of slides away from the current that are visible
+	    viewDistance: 3,
+
+	    // Parallax background image
+	    parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+	    // Parallax background size
+	    parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+		});
+		</script>
+	</body>
+</html>
